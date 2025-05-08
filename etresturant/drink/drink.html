@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>drink Menu Website</title>
+    
+    <link rel="stylesheet" href="search.css" />
+    <link rel="stylesheet" href="drink.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="s.js" defer></script>
+
+    <script src="search.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <a href="#" class="logo">
+        <img src="image/logo.jpg" alt="Logo" />
+      </a>
+      <ul class="navlist">
+        <li><a href="#">Home</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="/etresturant/option.html">Back to Option</a></li>
+      </ul>
+      <div class="nav-content">
+        <a href="#" id="search-icon"><i class="ri-search-line"></i></a>
+        <!-- Hidden Search Bar -->
+        <div id="search-bar">
+          <!-- Hidden Search Bar -->
+<div id="search-bar">
+  <input type="text" id="search-input" placeholder="Search..." />
+  <div id="search-results"></div>
+</div>
+
+<script>
+document.getElementById("search-input").addEventListener("input", function() {
+    let query = this.value.trim();
+    let resultsContainer = document.getElementById("search-results");
+
+    if (query.length === 0) {
+        resultsContainer.innerHTML = "";
+        return;
+    }
+
+    fetch(`search.php?query=${query}`)
+        .then(response => response.json())
+        .then(data => {
+            resultsContainer.innerHTML = "";
+            if (data.length === 0) {
+                resultsContainer.innerHTML = "<p>No results found.</p>";
+            } else {
+                data.forEach(drink => {
+                    let item = document.createElement("div");
+                    item.classList.add("search-result-item");
+                    item.innerHTML = `<strong>${drink.name}</strong>: ${drink.description}`;
+                    resultsContainer.appendChild(item);
+                });
+            }
+        })
+        .catch(error => console.error("Error fetching search results:", error));
+});
+</script>
+
+        </div>
+        <a href="#"><i class="ri-user-line"></i></a>
+        <a href="#"><i class="ri-heart-2-line"></i></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Refreshing Drinks</h1>
+        <p>
+          From energizing coffees to refreshing juices and creamy beverages,
+          <br />
+          our drink menu offers the perfect refreshment for every taste.
+        </p>
+      </div>
+    </section>
+
+    <!-- Drinks Section -->
+    <section class="drinks">
+      <div class="center-text">
+        <h2>Visit Our Drink Lounges</h2>
+      </div>
+      <div class="drinks-grid">
+        <div class="drink-item">
+          <a href="tea.html">
+            <img src="image/images.jpg" alt="Tea" />
+            <h4>Tea</h4>
+          </a>
+        </div>
+        <div class="drink-item">
+          <a href="drink1.html">
+            <img src="image/image.jpg" alt="Coffee" />
+            <h4>Coffee</h4>
+          </a>
+        </div>
+        <div class="drink-item">
+          <a href="drink5.html">
+            <img src="image/mac.jpg" alt="Macchiato" />
+            <h4>Macchiato</h4>
+          </a>
+        </div>
+
+        <div class="drink-item">
+          <a href="drink3.html">
+            <img src="image/milk.jpg" alt="Milk" />
+            <h4>Milk</h4>
+          </a>
+        </div>
+        <div class="drink-item">
+          <a href="drink4.html">
+            <img src="image/papaya.jpg" alt="Papaya Juice" />
+            <h4>Papaya Juice</h4>
+          </a>
+        </div>
+        <div class="drink-item">
+          <a href="drink2.html">
+            <img src="image/avo.jpg" alt="Avocado Juice" />
+            <h4>Avocado Juice</h4>
+          </a>
+        </div>
+        <div class="drink-item">
+          <a href="drink6.html">
+            <img src="image/soft.jpg" alt="Soft Drinks" />
+            <h4>Soft Drinks</h4>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-box">
+          <a href="#" class="logo">
+            <img src="image/logo.jpg" alt="Logo" />
+          </a>
+          <p>
+            We believe that every drink we offer brings joy and refreshment to
+            your day.
+          </p>
+          <div class="icons">
+            <a href="#"><i class="ri-facebook-fill"></i></a>
+            <a href="#"><i class="ri-instagram-fill"></i></a>
+            <a href="#"><i class="ri-dribbble-line"></i></a>
+            <a href="#"><i class="ri-twitter-fill"></i></a>
+            <a href="#"><i class="ri-youtube-fill"></i></a>
+          </div>
+        </div>
+        <div class="footer-box">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="support.html">Support</a></li>
+            <li><a href="privacy policy.html">Privacy Policy</a></li>
+            <li><a href="Terms of use.html">Terms of Use</a></li>
+            <li><a href="/etresturant/map.html">Site Map</a></li>
+            <li><a href="#">Drink Menu</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>Contact</h3>
+          <ul>
+            <li>Work Time: Monday - Sunday</li>
+            <li>11:00 AM - 12:00 AM</li>
+            <li>Address: AASTU</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2024 All Rights Reserved</p>
+      </div>
+    </footer>
+
+    <!-- Scroll Button -->
+    <a href="#" class="scroll-btnnn"><i class="ri-arrow-drop-up-line"></i></a>
+  </body>
+</html>
