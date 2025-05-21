@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logged Out</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #4b9e22, #d9d9d9);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logout-container {
+      background-color: white;
+      padding: 40px 60px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .logout-container h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .logout-container p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .login-btn {
+      display: inline-block;
+      background-color: #4b9e22;
+      color: white;
+      text-decoration: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #3b7d1c;
+    }
+  </style>
+</head>
+<body>
+  <div class="logout-container">
+    <h1>You have been logged out.</h1>
+    <p>Thank you for using the University Menu Portal.</p>
+    <a href="login1.html" class="login-btn">Log In Again</a>
+  </div>
+</body>
+</html>
