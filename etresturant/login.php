@@ -1,35 +1,68 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
-include('db.php');
+header('Content-Type: application/json');
 
-// Check if form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+require_once 'db.php';
 
-    // Prepare SQL query to find user by email
-    $query = "SELECT * FROM users WHERE email = :email";
-    $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email    = trim($_POST['email'] ?? '');
+    $password = trim($_POST['password'] ?? '');
+    $role     = strtolower(trim($_POST['role'] ?? ''));
 
-    // Fetch the user record
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (empty($email) || empty($password) || empty($role)) {
+        echo json_encode(['status' => 'error', 'message' => 'All fields are required.']);
+        exit;
+    }
 
-    if ($user && password_verify($password, $user['password'])) {
-        // Start session and store user data in session variables
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
-        header("Location: profile.php"); // Redirect to profile page
-        exit();
-    } else {
-        echo "Invalid email or password!";
+    try {
+        $query = "SELECT * FROM users WHERE email = :email";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user) {
+            $dbRole = strtolower(trim($user['role']));
+
+            if (!password_verify($password, $user['password'])) {
+                echo json_encode(['status' => 'error', 'message' => 'Invalid password.']);
+                exit;
+            }
+
+            if ($role !== $dbRole) {
+                echo json_encode(['status' => 'error', 'message' => 'Role mismatch.']);
+                exit;
+            }
+
+            $_SESSION['user'] = [
+                'user_id'  => $user['id'],
+                'username' => $user['username'],
+                'email'    => $user['email'],
+                'role'     => $user['role'],
+                'place'    => $user['place'] ?? null
+            ];
+
+            echo json_encode([
+                'status'  => 'success',
+                'message' => 'Login successful!',
+                'data'    => ['role' => $user['role']]
+            ]);
+            exit;
+
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'User not found.']);
+            exit;
+        }
+
+    } catch (PDOException $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
+        exit;
     }
 }
-?>
 
-<form method="POST" action="">
-    Email: <input type="email" name="email" required><br>
-    Password: <input type="password" name="password" required><br>
-    <button type="submit">Login</button>
-</form>
+echo json_encode(['status' => 'error', 'message' => 'Invalid request method.']);
+exit;
+?>
