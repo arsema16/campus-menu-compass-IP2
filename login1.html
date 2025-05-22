@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="login.css" />
+  <!-- ✅ UPDATED CDN for Boxicons -->
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Login & Register Page</title>
+</head>
+<body>
+  <div class="container" id="container">
+    <!-- Sign Up Form -->
+    <div class="form-container sign-up">
+      <form id="signup-form" method="POST" action="register.php">
+        <h1>Create Account</h1>
+        <div class="social-icons">
+          <a href="#" class="icons"><i class="bx bxl-google"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-github"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-linkedin"></i></a>
+        </div>
+        <span>Register with E-mail</span>
+        <input type="text" placeholder="Name" id="signup-name" name="username" required />
+        <input type="email" placeholder="Enter E-mail" id="signup-email" name="email" required />
+        <div class="password-wrapper">
+          <input type="password" placeholder="Enter Password" id="registerPassword" name="password" required />
+          <i class='bx bx-hide toggle-password' data-target="registerPassword"></i>
+        </div>
+        <input type="hidden" name="role" value="user" />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="form-container sign-in">
+      <form id="login-form" method="POST">
+        <h1>Sign In</h1>
+        <div class="social-icons">
+          <a href="#" class="icons"><i class="bx bxl-google"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-github"></i></a>
+          <a href="#" class="icons"><i class="bx bxl-linkedin"></i></a>
+        </div>
+        <span>Login With Email & Password</span>
+        <input type="email" placeholder="Enter E-mail" id="login-email" name="email" required />
+        <div class="password-wrapper">
+          <input type="password" placeholder="Enter Password" id="loginPassword" name="password" required />
+          <i class='bx bx-hide toggle-password' data-target="loginPassword"></i>
+        </div>
+        <select id="login-role" name="role" required>
+  <option value="">Select Role</option>
+  <option value="user">User</option>
+  <option value="regular_admin">Regular Admin</option>
+  <option value="super_admin">Super Admin</option>
+</select>
+
+        <a href="#">Forget Password?</a>
+        <button type="submit">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Toggle Panels -->
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h1>Welcome To <br />Our website</h1>
+          <p>Sign in With Email & Password</p>
+          <button class="hidden" id="login">Sign In</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h1>Food Menu Compass</h1>
+          <p>Sign up to discover your perfect meals.</p>
+          <button class="hidden" id="register">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="login1.js"></script>
+</body>
+</html>
