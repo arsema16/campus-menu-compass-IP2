@@ -32,7 +32,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 20px 10%;
-  background: var(--bg-color);
+  background: var(--text-color);
   box-shadow: 0 2px 5px -2px #0000001a;
   transition: all 0.6s ease;
 }
@@ -48,7 +48,7 @@ header {
 .navlist a {
   display: inline-block;
   font-size: var(--p-font);
-  color: var(--text-color);
+  color: var(--bg-color);
   margin: 0 30px;
   padding: 2px 0;
   border-bottom: 2px solid transparent;
@@ -65,7 +65,7 @@ header {
 .nav-content a {
   display: inline-block;
   font-size: 23px;
-  color: var(--text-color);
+  color: var(--bg-color);
   margin: 0 10px;
   transition: all 0.6s ease;
 }
@@ -404,7 +404,7 @@ section {
   color: var(--text-color);
   margin-right: 10px;
   font-size: 23px;
-  transition: all 0.7s ease;
+  transition: all 0.9s ease;
 }
 .icons i:hover {
   color: var(--main-color);
@@ -486,6 +486,7 @@ section {
 @media (max-width: 1070px) {
   #menu-icon {
     display: block;
+    color: var(--bg-color);
   }
   .navlist {
     position: absolute;
@@ -509,6 +510,7 @@ section {
     font-size: 22px;
     font-weight: 600;
     border-bottom: none;
+    color: var(--text-color);
   }
   .navlist a:hover {
     border-bottom: none;
