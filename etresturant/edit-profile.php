@@ -81,8 +81,6 @@ $user = $_SESSION['user'];
         <label for="email">Email</label>
         <input type="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
 
-        <label for="profile_pic">Profile Picture</label>
-        <input type="file" name="profile_pic" accept="image/*">
 
         <button type="submit" class="btn">Update Profile</button>
     </form>
